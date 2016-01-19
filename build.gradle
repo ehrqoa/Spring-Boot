@@ -1,0 +1,41 @@
+apply plugin: 'java'
+// eclipse for web
+apply plugin: 'eclipse-wtp'
+
+ext {
+  // spring boot plugin
+  springBootVersion = "1.2.1.RELEASE"
+
+  // MySQL connecterVersion
+  mySQLVersion = '5.1.34'
+  
+  //Tthymeleaf
+  thymeleafVersion = "2.1.4.RELEASE"
+}
+
+ext.defaultEncoding = 'UTF-8'
+ext.artifactId = 'SpringBoot'
+version = '1.0'
+
+// Java Use Version
+sourceCompatibility = targetCompatibility = 1.8
+tasks.withType(AbstractCompile) each {
+  it.options.encoding = ext.defaultEncoding
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+
+  //spring-boot
+  compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+
+  // MySQL
+  compile "mysql:mysql-connector-java:$mySQLVersion"
+}
